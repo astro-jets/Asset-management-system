@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#html5-qrcode-button-camera-permission{
+    background: orangered;
+    color: white;
+    border-radius: 10px;
+    padding: 6px;
+}
+#html5-qrcode-button-camera-stop{
+    background: linear-gradient(45deg, red, orangered);
+    color: white;
+    border-radius: 10px;
+    padding: 6px;
+    justify-self: center !important;
+
+}
+#html5-qrcode-anchor-scan-type-change{
+    background:  rgb(255, 136, 0);
+        color: white;
+        border-radius: 10px;
+        padding: 6px;
+        text-decoration: none !important;
+    }
+
+    #reader__dashboard_section{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        padding: 0 12px;
+    }

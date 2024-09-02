@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+  @import "base";
+  @import "components";
+  @import "navigation";
+  @import "buttons";
+  @import "utilities";
+}
