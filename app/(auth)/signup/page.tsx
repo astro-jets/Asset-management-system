@@ -7,6 +7,9 @@ import ErrorModal from "../../components/ErrorModal";
 import SuccessModal from "../../components/SuccessModal";
 import { signUp } from "../../actions/auth";
 import Loader from "@/components/loader/page";
+import Image from "next/image";
+import Link from "next/link";
+import { BsEnvelope } from "react-icons/bs";
 
 const Signup = () => {
     const [errModalStatus, seterrModalStatus] = useState(false);
@@ -56,116 +59,74 @@ const Signup = () => {
             />
             {loading ? <Loader /> : null}
 
-            <div className="w-full overflow-hidden  bg-blue-400 flex items-center justify-center min-h-screen relative z-10">
-                <div className="absolute -top-40 -right-40 lg:w-2/3 w-full h-80 -z-10">
-                    <svg xmlns='http://www.w3.org/2000/svg' className="drop-shadow-[-20px_10px_0px_#ffc949]" viewBox='0 0 2000 2000'
-                        fill='#ffb14a'>
-                        <path
-                            d='M994 112c-703-2-920.47 400.35-904 905 13.35 409 32.03 946.66 977 861 684-62 792-279 835-777 61.67-714.25-288.33-987.24-908-989Z'>
-                        </path>
-                    </svg>
-                </div>
-                <div className="w-full max-w-[1190px] px-6 sm:px-8 md:px-16 py-10 md:py-20 rounded-xl  min-h-[300px] m-2 ">
-                    {/* Here */}
-                    <div className="w-full max-w-md mx-auto p-6">
-                        <div className="mt-7 border border-blue-200 rounded-xl bg-blue-500">
-                            <div className="p-4 sm:p-7">
-                                <div className="text-center">
-                                    <h1 className="block text-2xl font-bold text-white">Sign Up</h1>
-                                    <p className="mt-2 text-sm text-white">
-                                        Already have an account?
-                                        <a className="text-white decoration-2 hover:underline font-medium" href="/signin">
-                                            Sign In here
-                                        </a>
-                                    </p>
+            <div className="font-[sans-serif]">
+                <div className="min-h-screen flex flex-col items-center justify-center py-6 px-4">
+                    <Image
+                        width={561}
+                        height={113}
+                        src={"/images/logo.png"}
+                        alt=""
+                        className="mb-4 object-cover overflow-hiddden"
+                    />
+                    <div className="flex justify-center py-6 items-center gap-4 max-w-6xl w-full">
+                        <div className="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
+                            <form action={handleSubmit} className="space-y-4">
+                                <div className="mb-8">
+                                    <h3 className="text-gray-800 text-3xl font-extrabold">Sign Up</h3>
+                                    <p className="text-gray-500 text-sm mt-4 leading-relaxed">Fill in this form with your details to create your account.</p>
                                 </div>
 
-                                <div className="mt-5">
-                                    <div className="py-3 flex items-center text-xs text-white uppercase before:flex-[1_1_0%] before:border-t before:border-blue-200 before:me-6 after:flex-[1_1_0%] after:border-t after:border-blue-200 after:ms-6 dark:text-white">Or</div>
-                                    {/* Form */}
-                                    <form action={handleSubmit} >
-                                        <div className="grid gap-y-4">
-
-                                            {/* Form Group */}
-                                            <div>
-                                                <label htmlFor="name" className="block text-sm mb-2 dark:text-white">Username</label>
-                                                <div className="relative">
-                                                    <input
-                                                        type="text" id="name" name="name"
-                                                        className="py-3 px-4 block w-full border-blue-200 rounded-lg text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none "
-                                                        required aria-describedby="email-error"
-                                                        onChange={(e) => {
-                                                            setName(e.target.value)
-                                                        }}
-                                                        value={name}
-                                                    />
-                                                    <div className="hidden absolute inset-y-0 end-0  items-center pointer-events-none pe-3">
-                                                        <svg className="h-5 w-5 text-white" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <p className="hidden text-xs text-white mt-2" id="email-error">Please include a valid email address so we can get back to you</p>
-                                            </div>
-                                            {/* End Form Group */}
-
-                                            {/* Form Group */}
-                                            <div>
-                                                <label htmlFor="email" className="block text-sm mb-2 dark:text-white">Email address</label>
-                                                <div className="relative">
-                                                    <input
-                                                        type="email" id="email" name="email"
-                                                        className="py-3 px-4 block w-full border-blue-200 rounded-lg text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none "
-                                                        required aria-describedby="email-error"
-                                                        onChange={(e) => {
-                                                            setEmail(e.target.value)
-                                                        }}
-                                                        value={email}
-                                                    />
-                                                    <div className="hidden absolute inset-y-0 end-0  items-center pointer-events-none pe-3">
-                                                        <svg className="h-5 w-5 text-white" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                                <p className="hidden text-xs text-white mt-2" id="email-error">Please include a valid email address so we can get back to you</p>
-                                            </div>
-                                            {/* End Form Group */}
-
-                                            {/* Form Group */}
-                                            <div>
-                                                <div className="flex justify-between items-center">
-                                                    <label htmlFor="password" className="block text-sm mb-2 dark:text-white">Password</label>
-                                                    <a className="text-sm text-white decoration-2 hover:underline font-medium" href="../examples/html/recover-account.html">Forgot password?</a>
-                                                </div>
-
-                                                <div className="relative">
-                                                    <input
-                                                        type="password" id="password" name="password" className="py-3 px-4 block w-full border-blue-200 rounded-lg text-sm focus:border-red-500 focus:ring-red-500 disabled:opacity-50 disabled:pointer-events-none" required aria-describedby="password-error"
-                                                        onChange={(e) => {
-                                                            setPassword(e.target.value)
-                                                        }}
-                                                        value={password}
-                                                    />
-                                                    <div className="hidden absolute inset-y-0 end-0  items-center pointer-events-none pe-3">
-                                                        <svg className="h-5 w-5 text-white" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
-                                                        </svg>
-                                                    </div>
-                                                </div>
-
-                                                <p className="hidden text-xs text-white mt-2" id="password-error">8+ characters required</p>
-                                            </div>
-                                            {/* End Form Group */}
-
-
-                                            <button type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-700 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none">Sign Up</button>
-                                        </div>
-                                    </form>
-                                    {/* End Form */}
+                                <div>
+                                    <label className="text-gray-800 text-sm mb-2 block">Username</label>
+                                    <div className="relative flex items-center">
+                                        <input name="username" type="text" required className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-orange-600" placeholder="Enter user name"
+                                            onChange={(e) => {
+                                                setName(e.target.value)
+                                            }}
+                                        />
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-4" viewBox="0 0 24 24">
+                                            <circle cx="10" cy="7" r="6" data-original="#000000"></circle>
+                                            <path d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z" data-original="#000000"></path>
+                                        </svg>
+                                    </div>
                                 </div>
-                            </div>
+                                <div>
+                                    <label className="text-gray-800 text-sm mb-2 block">Email</label>
+                                    <div className="relative flex items-center">
+                                        <input name="email" type="email" required className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-orange-600" placeholder="Enter user name"
+                                            onChange={(e) => {
+                                                setEmail(e.target.value)
+                                            }}
+                                        />
+                                        <BsEnvelope size={20} color="gray" className="w-[18px] h-[18px] absolute right-4" />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="text-gray-800 text-sm mb-2 block">Password</label>
+                                    <div className="relative flex items-center">
+                                        <input name="password" type="password" required className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-orange-600" placeholder="Enter password"
+                                            onChange={(e) => {
+                                                setPassword(e.target.value)
+                                            }}
+                                        />
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb" className="w-[18px] h-[18px] absolute right-4 cursor-pointer" viewBox="0 0 128 128">
+                                            <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z" data-original="#000000"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <div className="!mt-8">
+                                    <button type="submit" className="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-orange-600 hover:bg-orange-700 focus:outline-none">
+                                        Sign Up
+                                    </button>
+                                </div>
+
+                                <p className="text-sm !mt-8 text-center text-gray-800">Already have an account? <Link href="/sinin" className="text-orange-600 font-semibold hover:underline ml-1 whitespace-nowrap">Sing in here</Link></p>
+                            </form>
                         </div>
+                        {/* <div className="lg:h-[400px] md:h-[300px] max-md:mt-8">
+                            <img src="https://readymadeui.com/login-image.webp" className="w-full h-full max-md:w-4/5 mx-auto block object-cover" alt="Dining Experience" />
+                        </div> */}
                     </div>
                 </div>
             </div>

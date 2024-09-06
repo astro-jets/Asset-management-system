@@ -25,7 +25,7 @@ const AssetsPage = async () => {
             <Breadcrumb pageName="Assets" />
             <div className=" flex-wrap gap-10 grid grid-cols-3">
                 {
-                    assets.map(asset => (
+                    assets?.map(asset => (
                         <div className="w-full">
                             <div className="mb-9 rounded-[20px] bg-white shadow-2 hover:shadow-lg">
                                 <div className="mb-8 overflow-hidden flex h-60 w-full items-center justify-center rounded-xl">

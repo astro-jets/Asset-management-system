@@ -1,6 +1,7 @@
 // api/claims/new
 import dbConnect from "@/lib/db";
 import Maintenance from "@/models/Maintenance";
+import Notification from "@/models/Notification";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -19,6 +20,11 @@ export async function POST(req: Request) {
 
     const maintenance = await newMaintenance.save();
     if (maintenance) {
+      const notification = new Notification({
+        user: user,
+        asset: asset,
+        message: message,
+      });
       return NextResponse.json(
         {
           status: true,

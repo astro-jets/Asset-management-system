@@ -1,43 +1,39 @@
-// // pages/api/ClientStats.ts//
-// import dbConnect from "@/lib/db";
-// import User from "@/models/User";
-// import Car from "@/models/Car";
-// import { NextResponse } from "next/server";
-// import Application from "@/models/Application";
-// import Course from "@/models/Course";
-// import Lesson from "@/models/Lesson";
+// pages/api/ClientStats.ts//
+import dbConnect from "@/lib/db";
+import Asset from "@/models/Asset";
+import Maintenance from "@/models/Asset";
+import Assignment from "@/models/Assignment";
+import { NextResponse } from "next/server";
 
-// export async function GET(req: Request) {
-//   try {
-//     await dbConnect();
-//     const { searchParams } = new URL(req.url);
-//     const id = searchParams.get("id");
+export async function GET(req: Request) {
+  try {
+    await dbConnect();
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
 
-//     const applications = await Application.find({ user: id });
+    const maintenanceCount = await Maintenance.countDocuments({ user: id });
+    const assignmentsCount = await Assignment.countDocuments({ user: id });
+    const assignments = await Assignment.find({ user: id });
 
-//     let paymentsCount = 0;
-//     let lessonsCount = 0;
-//     for (let i = 0; i < applications.length; i++) {
-//       const application = applications[i];
-//       const lessons = await Lesson.find({ application: application._id });
-//       const course = await Course.findById(application.course);
-//       paymentsCount += parseInt(course.price as string);
-//       if (lessons.length) {
-//         lessonsCount += 1;
-//       }
-//     }
-//     const stats = {
-//       lessons: lessonsCount,
-//       applications: applications.length,
-//       payments: paymentsCount,
-//     };
+    let assetsRevenue = 0;
 
-//     return NextResponse.json({ stats }, { status: 201 });
-//   } catch (error) {
-//     console.log("Zakanika => ", error);
-//     return NextResponse.json({
-//       status: false,
-//       message: `Error fetching User ${error}`,
-//     });
-//   }
-// }
+    for (let i = 0; i < assignments.length; i++) {
+      const asset = await Asset.findOne({ _id: assignments[i].asset });
+      assetsRevenue += parseInt(asset.cost);
+    }
+
+    const stats = {
+      maintenances: maintenanceCount,
+      assignments: assignmentsCount,
+      revenue: assetsRevenue,
+    };
+
+    return NextResponse.json({ stats }, { status: 201 });
+  } catch (error) {
+    console.log("Zakanika => ", error);
+    return NextResponse.json({
+      status: false,
+      message: `Error fetching User ${error}`,
+    });
+  }
+}

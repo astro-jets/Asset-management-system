@@ -8,10 +8,10 @@ export default withAuth(
 
     if (
       request.nextUrl.pathname.startsWith("/admin") &&
-      request.nextauth.token?.role !== "instructor"
+      request.nextauth.token?.role !== "admin"
     ) {
-      if (request.nextauth.token?.role !== "instructor") {
-        return NextResponse.rewrite(new URL("/dashboard", request.url));
+      if (request.nextauth.token?.role == "user") {
+        return NextResponse.redirect(new URL("/dashboard", request.url));
       }
       return NextResponse.rewrite(new URL("/denied", request.url));
     }
@@ -23,5 +23,5 @@ export default withAuth(
   }
 );
 export const config = {
-  matcher: ["/messages", "/lessons"],
+  matcher: ["/dashboard", "/admin/:path*"],
 };
