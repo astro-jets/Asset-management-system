@@ -7,21 +7,19 @@ const Hero = () => {
                 <div className="-mx-4 flex flex-wrap">
                     <div className="w-full px-4 lg:w-5/12">
                         <div className="hero-content">
-                            <h1 className="mb-5 text-4xl font-bold !leading-[1.208] text-dark dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
-                                Kickstart your professional driving carrer with QuickPass.
+                            <h1 className="w-full mb-5 text-4xl font-bold !leading-[1.208] text-primary dark:text-white sm:text-[42px] lg:text-[40px] xl:text-5xl">
+                                Asset management system.
                             </h1>
                             <p className="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
-                                With Quick Pass, business and students thrive together.
-                                Business can perfectly match their staffing to changing demand
-                                throughout the dayed.
+                                Get started by clicking the Dashboard button to log in to your dashboard or click the sign up button to vreate your account.
                             </p>
                             <ul className="flex flex-wrap items-center space-x-4">
                                 <li>
                                     <a
-                                        href="/courses"
+                                        href="/admin/dashboard"
                                         className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
                                     >
-                                        Courses
+                                        Dashboard
                                     </a>
                                 </li>
                                 <li>
@@ -41,45 +39,11 @@ const Hero = () => {
                         <div className="lg:ml-auto lg:text-right">
                             <div className="relative z-10 inline-block pt-11 lg:pt-0">
                                 <img
-                                    src="/images/about-1.jpg"
+                                    src="/images/task/task-01.jpg"
                                     alt="hero"
-                                    className="max-w-full lg:ml-auto"
+                                    className="max-w-full lg:ml-auto rounded-2xl"
                                 />
-                                <span className="absolute -bottom-8 -left-8 z-[-1]">
-                                    <svg
-                                        width="93"
-                                        height="93"
-                                        viewBox="0 0 93 93"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <circle cx="2.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="2.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="2.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="2.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="2.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="24.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="24.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="24.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="24.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="24.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="46.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="46.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="46.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="46.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="46.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="68.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="68.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="68.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="68.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="68.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="90.5" cy="2.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="90.5" cy="24.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="90.5" cy="46.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="90.5" cy="68.5" r="2.5" fill="#3056D3" />
-                                        <circle cx="90.5" cy="90.5" r="2.5" fill="#3056D3" />
-                                    </svg>
-                                </span>
+
                             </div>
                         </div>
                     </div>

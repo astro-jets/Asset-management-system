@@ -7,6 +7,7 @@ import DropdownUser from "./DropdownUser";
 import Image from "next/image";
 import QRScanner from "./QRScanner";
 import { useSession } from "next-auth/react";
+import { useEffect } from "react";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;

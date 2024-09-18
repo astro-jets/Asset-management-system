@@ -6,6 +6,7 @@ import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import { StatsType } from "@/types/stats";
 import { MonthlyReport } from "@/types/monthlyReport";
+import EmptyModal from "@/app/components/EmptyModal";
 export const metadata: Metadata = {
     title: "World Vision | Dashboard",
     description: "This is the dashboard",
@@ -21,7 +22,7 @@ export default async function Home() {
     const stats: StatsType = res.stats;
 
     const reports = await getReports();
-    const monthly: MonthlyReport = reports.monthly;
+    const monthly: MonthlyReport = reports?.monthly;
 
     const data = {
         monthly,
@@ -31,7 +32,7 @@ export default async function Home() {
     return (
         <>
             <CustomerDashboard>
-                <ECommerce data={data} />
+                {data.monthly && data.stats ? < ECommerce data={data} /> : <EmptyModal message={"Try creating new assets and assigng them."} title={"No dashboard data found"} buttonMessage={"Create Asset"} link={"/admin/assets"} />}
             </CustomerDashboard>
         </>
     );
