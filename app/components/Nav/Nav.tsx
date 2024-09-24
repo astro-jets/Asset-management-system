@@ -14,7 +14,9 @@ const Navbar = async () => {
     const notifications: notificationProps[] = res.notifications;
 
     return (
-        <NavComponent notifications={notifications} />
+        <>
+            {notifications ? <NavComponent notifications={notifications} /> : null}
+        </>
     );
 }
 
