@@ -18,7 +18,7 @@ const SingleAsset = async ({ params }: paramProps) => {
     if (!asset) { return }
     const date = asset.createdAt as string;
     return (
-        <CustomerDashboard>
+        <CustomerDashboard notifications={[]}>
             <Breadcrumb pageName={`Assets | ${asset.name}`} />
             <div className="w-full flex justify-center">
                 <div className="w-4/5 flex justify-between bg-white p-2 rounded-2xl shadow-3 shadow-boxdark">

@@ -121,7 +121,7 @@ const Signup = () => {
                                     </button>
                                 </div>
 
-                                <p className="text-sm !mt-8 text-center text-gray-800">Already have an account? <Link href="/sinin" className="text-orange-600 font-semibold hover:underline ml-1 whitespace-nowrap">Sing in here</Link></p>
+                                <p className="text-sm !mt-8 text-center text-gray-800">Already have an account? <Link href="/signin" className="text-orange-600 font-semibold hover:underline ml-1 whitespace-nowrap">Sing in here</Link></p>
                             </form>
                         </div>
                         {/* <div className="lg:h-[400px] md:h-[300px] max-md:mt-8">

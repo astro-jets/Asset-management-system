@@ -34,7 +34,7 @@ export async function POST(req: Request) {
     if (assignment) {
       // Create a notification to alert the user of the assignment
       const newNotification = new Notification({
-        title: "Asset assigned",
+        title: "Asset assignment",
         for: user,
         message: `You have been assigned a ${assetDetails.name}`,
       });

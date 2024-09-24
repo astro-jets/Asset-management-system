@@ -5,7 +5,10 @@ import { Schema, model } from "mongoose";
 const NotificationSchema = new Schema(
   {
     user: { type: String },
-    for: { type: String, default: "user" },
+    title: { type: String },
+    asset: { type: String },
+    for: { type: String, default: "admin" },
+    by: { type: String, default: "user" },
     message: { type: String },
     status: { type: String, default: "unread" },
   },

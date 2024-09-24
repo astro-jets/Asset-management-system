@@ -2,12 +2,13 @@
 import React, { useState, ReactNode } from "react";
 import Header from "@/components/Header";
 import CustomerSidebar from "../Sidebar/customer";
+import { notificationProps } from "@/types/notification";
 
 export default function CustomerDashboard({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+  children, notifications }: {
+    notifications: notificationProps;
+    children: React.ReactNode;
+  }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   return (
     <>
@@ -21,7 +22,7 @@ export default function CustomerDashboard({
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
           {/* <!-- ===== Header Start ===== --> */}
           <div className="top-0 relative w-full flex items-center justify-center  mt-5 h-30">
-            <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+            <Header notifications={notifications} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           </div>
           {/* <!-- ===== Header End ===== --> */}
 

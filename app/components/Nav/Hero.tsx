@@ -16,16 +16,8 @@ const Hero = () => {
                             <ul className="flex flex-wrap items-center space-x-4">
                                 <li>
                                     <a
-                                        href="/admin/dashboard"
-                                        className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-center text-base font-medium text-white hover:bg-blue-dark lg:px-7"
-                                    >
-                                        Dashboard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a
                                         href="/signup"
-                                        className=" bg-white shadow-4 rounded-lg inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium text-[#464646] hover:text-primary dark:text-white"
+                                        className=" bg-primary text-white shadow-4 rounded-lg inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium"
                                     >
                                         <span><BsPerson size={20} color="#fff" /></span>
                                         Sign Up

@@ -1,6 +1,6 @@
 import ECommerce from "@/components/Dashboard/customersPage";
 import { Metadata } from "next";
-import { getCustomerStats, getReports } from "@/app/actions/action";
+import { getCustomerStats, getNotifications, getReports } from "@/app/actions/action";
 import CustomerDashboard from "@/components/Layouts/CustomerDashboard";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
@@ -15,10 +15,15 @@ export const metadata: Metadata = {
 export default async function Home() {
     const session = await getServerSession(options);
     if (!session?.user) { return }
-    // Get users stats
-    const res = await getCustomerStats(session.user.id);
-    console.log("RES => ", res)
 
+    const user = session.user;
+
+    // Get Notifications
+    const notficationsRequest = await getNotifications(user.id);
+    const notifications = notficationsRequest.notifications;
+
+    // Get users stats
+    const res = await getCustomerStats(user.id);
     const stats: StatsType = res.stats;
 
     const reports = await getReports();
@@ -31,7 +36,7 @@ export default async function Home() {
 
     return (
         <>
-            <CustomerDashboard>
+            <CustomerDashboard notifications={notifications}>
                 {data.monthly && data.stats ? < ECommerce data={data} /> : <EmptyModal message={"Try creating new assets and assigng them."} title={"No dashboard data found"} buttonMessage={"Create Asset"} link={"/admin/assets"} />}
             </CustomerDashboard>
         </>

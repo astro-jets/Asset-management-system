@@ -21,10 +21,13 @@ export async function POST(req: Request) {
     const maintenance = await newMaintenance.save();
     if (maintenance) {
       const notification = new Notification({
-        user: user,
+        by: user,
+        title: "Maintenance Request",
+        for: "admin",
         asset: asset,
         message: message,
       });
+      notification.save();
       return NextResponse.json(
         {
           status: true,

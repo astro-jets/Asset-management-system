@@ -12,7 +12,7 @@ export async function GET(req: Request) {
     await dbConnect();
 
     const notifications = await Notification.find({
-      user: userId,
+      for: userId,
       status: "unread",
     });
 

@@ -8,15 +8,17 @@ import Image from "next/image";
 import QRScanner from "./QRScanner";
 import { useSession } from "next-auth/react";
 import { useEffect } from "react";
+import { notificationProps } from "@/types/notification";
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
   setSidebarOpen: (arg0: boolean) => void;
+  notifications?: notificationProps
 }) => {
   const { data: session, status } = useSession();
   const user = session?.user;
   return (
-    <header className="rounded-2xl sticky top-0 z-999 flex w-[93%] bg-white  dark:bg-boxdark drop-shadow-none">
+    <div className="rounded-2xl sticky top-0 z-999 flex w-[93%] bg-white  dark:bg-boxdark drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-4  2xl:px-11">
         <div className="flex items-center gap-2 sm:gap-4 lg:hidden">
           {/* <!-- Hamburger Toggle BTN --> */}
@@ -110,7 +112,7 @@ const Header = (props: {
             {/* <!-- Dark Mode Toggler --> */}
 
             {/* <!-- Notification Menu Area --> */}
-            <DropdownNotification />
+            <DropdownNotification notifications={props.notifications as notificationProps} />
             {/* <!-- Notification Menu Area --> */}
 
             {
@@ -119,7 +121,7 @@ const Header = (props: {
           </ul>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 

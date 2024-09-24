@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { notificationProps } from "@/types/notification";
+import moment from "moment";
 
-const DropdownNotification = () => {
+const DropdownNotification = ({ notifications }: { notifications: notificationProps }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
 
@@ -78,54 +80,25 @@ const DropdownNotification = () => {
         </div>
 
         <ul className="flex h-auto flex-col overflow-y-auto">
-          <li>
-            <Link
-              className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              href="#"
-            >
-              <p className="text-sm flex flex-col">
-                <span className="text-black dark:text-white">
-                  Asset Repair Request
-                </span>{" "}
-                Fiskani Singini from the IT department requested for a repairment of the office printer.
-              </p>
+          {
+            notifications?.map(notification => (
+              <li>
+                <Link
+                  className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
+                  href="#"
+                >
+                  <p className="text-sm flex flex-col">
+                    <span className="text-black dark:text-white">
+                      {notification.title}
+                    </span>{" "}
+                    {notification.message}
+                  </p>
 
-              <p className="text-xs">14 August, 2025</p>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              href="#"
-            >
-              <p className="text-sm flex flex-col">
-                <span className="text-black dark:text-white">
-                  Asset Repair Reminder
-                </span>{" "}
-                This is to remind you that all assets bought on 22 October 2015 have now expired and need reviwing.
-                <span className="text-primary">view more ...</span>
-              </p>
-
-              <p className="text-xs">12 August, 2025</p>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              className="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              href="#"
-            >
-              <p className="text-sm flex flex-col">
-                <span className="text-black dark:text-white">
-                  Asset Repair Request
-                </span>{" "}
-                Thembi Singini from the human resource departmentrequested for a repairment of her laptop.
-              </p>
-
-              <p className="text-xs">12 August, 2025</p>
-            </Link>
-          </li>
+                  <p className="text-xs">{moment(notification.createdAt).calendar()}</p>
+                </Link>
+              </li>
+            ))
+          }
 
         </ul>
       </div>

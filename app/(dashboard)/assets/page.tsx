@@ -21,7 +21,7 @@ const AssetsPage = async () => {
     console.log("RES => ", res)
     const assets: AssetProps[] = res.assets;
     return (
-        <CustomerDashboard>
+        <CustomerDashboard notifications={[]}>
             <Breadcrumb pageName="Assets" />
             <div className=" flex-wrap gap-10 grid grid-cols-3">
                 {

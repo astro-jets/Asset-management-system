@@ -23,7 +23,7 @@ const MaintenancesPage = async () => {
     const maintenances: MaintenaceProps[] = res.maintenances;
 
     return (
-        <CustomerDashboard>
+        <CustomerDashboard notifications={[]}>
             <Breadcrumb pageName="Maintenances" />
             <div className="grid w-full sm:grid-cols-2 xl:grid-cols-4 gap-6">
                 {
