@@ -5,6 +5,8 @@ import { AssetProps } from "@/types/asset";
 import NewAsset from "@/components/NewAsset/page";
 import { getAssets } from "@/app/actions/assets";
 import Link from "next/link";
+import { getNotifications } from "@/app/actions/action";
+import { notificationProps } from "@/types/notification";
 
 export const metadata: Metadata = {
     title: "Assets",
@@ -15,8 +17,10 @@ const CoursesPage = async () => {
     const res = await getAssets();
     console.log(res)
     const assets: AssetProps[] = res.Assets;
+    const notification = await getNotifications("admin");
+    const notifications: notificationProps = notification.notifications;
     return (
-        <DefaultLayout>
+        <DefaultLayout notifications={notifications}>
             <Breadcrumb pageName="Assets" />
             <div className="py-8">
                 <NewAsset />
@@ -26,7 +30,7 @@ const CoursesPage = async () => {
                 {
                     assets.map(asset => (
                         <div className="w-full">
-                            <div className="mb-9 rounded-[20px] bg-white shadow-2 hover:shadow-lg">
+                            <div className="mb-9 rounded-[20px] bg-white dark:bg-secondary shadow-2 hover:shadow-lg">
                                 <div className="mb-8 overflow-hidden flex h-60 w-full items-center justify-center rounded-xl">
                                     <img className="object-cover w-full h-60" src={`/uploads/${asset.path}`} alt="" />
                                 </div>

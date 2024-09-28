@@ -1,4 +1,4 @@
-import { BsPerson } from "react-icons/bs";
+import { BsDoorClosed, BsPerson } from "react-icons/bs";
 
 const Hero = () => {
     return (
@@ -13,13 +13,22 @@ const Hero = () => {
                             <p className="mb-8 max-w-[480px] text-base text-body-color dark:text-dark-6">
                                 Get started by clicking the Dashboard button to log in to your dashboard or click the sign up button to vreate your account.
                             </p>
-                            <ul className="flex flex-wrap items-center space-x-4">
+                            <ul className="flex flex-wrap items-center space-x-4 justify-between">
+                                <li>
+                                    <a
+                                        href="/admin/dashboard"
+                                        className=" bg-[#f3f3f3] text-black shadow-4 rounded-lg inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium"
+                                    >
+                                        <span><BsPerson size={20} color="#111" /></span>
+                                        Dashboad
+                                    </a>
+                                </li>
                                 <li>
                                     <a
                                         href="/signup"
                                         className=" bg-primary text-white shadow-4 rounded-lg inline-flex items-center justify-center px-5 py-3 text-center text-base font-medium"
                                     >
-                                        <span><BsPerson size={20} color="#fff" /></span>
+                                        <span><BsDoorClosed size={20} color="#fff" /></span>
                                         Sign Up
                                     </a>
                                 </li>

@@ -20,10 +20,9 @@ export default async function Home() {
 
     return (
         <>
-            <CustomerDashboard>
+            <CustomerDashboard notifications={[]}>
                 <Breadcrumb pageName="Reports" />
                 <Charts />
-                <p className="text-black">nsnsnsnsn</p>
             </CustomerDashboard>
         </>
     );

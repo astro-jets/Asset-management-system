@@ -27,7 +27,7 @@ const AssetsPage = async () => {
                 {
                     assets?.map(asset => (
                         <div className="w-full">
-                            <div className="mb-9 rounded-[20px] bg-white shadow-2 hover:shadow-lg">
+                            <div className="mb-9 rounded-[20px] bg-white dark:bg-boxdark shadow-2 hover:shadow-lg">
                                 <div className="mb-8 overflow-hidden flex h-60 w-full items-center justify-center rounded-xl">
                                     <img className="object-cover w-full h-60" src={`/uploads/${asset.path}`} alt="" />
                                 </div>

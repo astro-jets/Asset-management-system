@@ -11,10 +11,13 @@ export const getMaintenances = async (): Promise<any> => {
     console.error(e);
   }
 };
+/**
+ * This function returns a single maintenace and takes in the maintenance Id as an argument
+ */
 export const getMaintenance = async (id: string): Promise<any> => {
   try {
     const response = await fetch(
-      `${process.env.ROOT_LINK}/api/maintenances/single/?id=${id}`,
+      `${process.env.ROOT_LINK}/api/maintenances/single?id=${id}`,
       {
         next: {
           revalidate: 0,
