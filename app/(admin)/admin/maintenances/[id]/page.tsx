@@ -53,7 +53,7 @@ const SingleMaintenace = async ({ params }: paramProps) => {
                                         {maintenance.maintenance.message}
                                     </p>
 
-                                    {/* <HandleMaintenance asset={"asset"} /> */}
+                                    <HandleMaintenance asset={"asset"} />
                                 </div>
                             </div>
                         </div>

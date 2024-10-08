@@ -1,13 +1,10 @@
 "use client"
 
-
-import Link from "next/link";
 import { useState } from "react";
 import Loader from "../common/Loader";
 import SucessModal from "@/app/components/SuccessModal";
 import { useRouter } from "next/navigation";
 import ErrorModal from "@/app/components/ErrorModal";
-import { BsPlus, BsX } from "react-icons/bs";
 import { MaintenaceProps } from "@/types/maintenace";
 import { useSession } from "next-auth/react";
 
@@ -19,13 +16,15 @@ const HandleMaintenance = ({ asset }: { asset: string }) => {
     const user = session?.user;
     if (!user) { return; }
 
+    const router = useRouter();
+
     const [loading, setLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [errMsg, setErrMsg] = useState('')
     const [showErrModal, setShowErrModal] = useState(false);
     const [formData, setFormData] = useState(initialAsset);
-    const router = useRouter();
+
 
     const handleSubmit = async () => {
         if (!formData.message) {
@@ -82,20 +81,18 @@ const HandleMaintenance = ({ asset }: { asset: string }) => {
                 }}
                 url=""
             />
-            {!showForm &&
-                <div className="flex justify-between space-x-4 w-full">
-                    <p
-                        onClick={() => { setShowForm(!showForm) }}
-                        className="w-2/3  cursor-pointer p-2 text-white bg-blue-500 rounded-2xl text-center">
-                        Approve
-                    </p>
-                    <p
-                        onClick={() => { setShowForm(!showForm) }}
-                        className="w-2/3  cursor-pointer p-2 text-white bg-primary rounded-2xl text-center">
-                        Reject
-                    </p>
-                </div>
-            }
+            <div className="flex justify-between space-x-4 w-full">
+                <p
+                    onClick={() => { setShowForm(!showForm) }}
+                    className="w-2/3  cursor-pointer p-2 text-white bg-blue-500 rounded-2xl text-center">
+                    Approve
+                </p>
+                <p
+                    onClick={() => { setShowForm(!showForm) }}
+                    className="w-2/3  cursor-pointer p-2 text-white bg-primary rounded-2xl text-center">
+                    Reject
+                </p>
+            </div>
         </>
     );
 }

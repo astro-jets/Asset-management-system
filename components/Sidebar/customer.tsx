@@ -70,14 +70,14 @@ const CustomerSidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
-        <Link href="/" className="w-[176px] h-[32px]">
+        <Link href="/admin/" className="w-[176px] h-[32px]">
           <Image
-            width={176}
-            height={32}
+            width={5610}
+            height={113}
             src={"/images/logo.png"}
             alt="Logo"
             priority
-            className="object-cover overflow-hidden h-[34px] bg-white rounded-2xl"
+            className="object-cover p-2 rounded-2xl overflow-hidden bg-[#ffffffda]"
           />
           {/* <h1 className="text-white text-3xl font-bold">Quick Pass</h1> */}
         </Link>
