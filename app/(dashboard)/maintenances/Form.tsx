@@ -1,7 +1,5 @@
 "use client"
 
-
-import Link from "next/link";
 import { useState } from "react";
 import Loader from "@/components/common/Loader";
 import SucessModal from "@/app/components/SuccessModal";
@@ -15,7 +13,7 @@ const initialAsset: AssetProps = {
 }
 const NewAsset = () => {
     const [file, setFile] = useState<File>();
-    const [loading, setLoading] = useState(false);
+    const [isLoading, setLoading] = useState(false);
     const [showForm, setShowForm] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [errMsg, setErrMsg] = useState('')
@@ -65,7 +63,7 @@ const NewAsset = () => {
     return (
         <>
             {
-                loading && <Loader />
+                isLoading && <Loader />
             }
             <SucessModal
                 message="Succefully saved the asset."

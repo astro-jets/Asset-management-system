@@ -7,7 +7,7 @@ import Loader from "../common/Loader";
 import SucessModal from "@/app/components/SuccessModal";
 import { useRouter } from "next/navigation";
 import ErrorModal from "@/app/components/ErrorModal";
-import { BsPlus, BsX } from "react-icons/bs";
+import { BsX } from "react-icons/bs";
 import { MaintenaceProps } from "@/types/maintenace";
 import { useSession } from "next-auth/react";
 

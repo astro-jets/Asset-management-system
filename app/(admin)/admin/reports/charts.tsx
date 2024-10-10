@@ -1,6 +1,7 @@
 "use client"
 import ChartOne from "@/components/Charts/ChartOne";
 import ChartTwo from "@/components/Charts/ChartTwo";
+import DonutChart from "@/components/Charts/Doniughts";
 
 const Charts = ({ monthly, weekly }: { weekly: any, monthly: any }) => {
     return (
@@ -8,6 +9,7 @@ const Charts = ({ monthly, weekly }: { weekly: any, monthly: any }) => {
             <div className="col-span-12 space-y-4">
                 <ChartOne monthly={monthly} />
                 <ChartTwo weekly={weekly} />
+                <DonutChart />
             </div>
         </div>
     );

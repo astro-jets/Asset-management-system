@@ -8,6 +8,8 @@ import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
 import AssetAssignment from "@/components/Assign/page";
 import Image from "next/image";
+import { getNotifications } from "@/app/actions/action";
+import AssetExpiry from "@/app/(dashboard)/assets/[id]/expiry";
 type paramProps = {
     params: Params
 }
@@ -19,8 +21,9 @@ const SingleAsset = async ({ params }: paramProps) => {
     console.log(res)
     const date = asset?.createdAt as string;
     const user = asset?.user;
+    const notiRes = await getNotifications("admin");
     return (
-        <DefaultLayout>
+        <DefaultLayout notifications={notiRes.notifications}>
             {asset ? <>
                 <Breadcrumb pageName={`Assets | ${asset.name}`} />
                 <div className="w-full flex justify-center">
@@ -40,6 +43,7 @@ const SingleAsset = async ({ params }: paramProps) => {
                                     </>
                                 }
                                 <p>Registered On: {moment(date).calendar()}</p>
+                                <AssetExpiry expiryDate={asset.createdAt} />
                                 <img src={asset.qrCode} className="object-cover rounded-2xl w-30 h-30" alt="" />
                                 {!user && <AssetAssignment asset={asset._id!} />}
                             </div>

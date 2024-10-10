@@ -1,11 +1,11 @@
 import { getAsset } from "@/app/actions/assets";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { AssetProps } from "@/types/asset";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import moment from "moment";
 import AssetMaintenace from "@/components/Maintenace/page";
 import CustomerDashboard from "@/components/Layouts/CustomerDashboard";
+import AssetExpiry from "./expiry";
 type paramProps = {
     params: Params
 }
@@ -30,6 +30,7 @@ const SingleAsset = async ({ params }: paramProps) => {
                             <p>Asset Cost: {asset.cost}</p>
                             <p>Registered On: {moment(date).calendar()}</p>
                             <p>Assigned On: {asset.assigned_on}</p>
+                            <AssetExpiry expiryDate={date} />
                             <img src={asset.qrCode} className="object-cover rounded-2xl w-30 h-30" alt="" />
                             <AssetMaintenace asset={asset._id as string} />
                         </div>
