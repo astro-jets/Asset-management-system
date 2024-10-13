@@ -16,6 +16,21 @@ export const getAdminStats = async (): Promise<any> => {
   }
 };
 
+export const getExpiryReports = async (): Promise<any> => {
+  try {
+    const response = await fetch(
+      `${process.env.ROOT_LINK}/api/actions/charts/expiry`
+    );
+    if (!response) {
+      return "Couldnt find reports";
+    }
+    const res = await response.json();
+    return res;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export const getReports = async (): Promise<any> => {
   try {
     const response = await fetch(

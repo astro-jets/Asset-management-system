@@ -8,7 +8,7 @@ interface ChartTwoState {
     series: number[];
 }
 
-const DonutChart = () => {
+const DonutChart = ({ expiry }: { expiry: { unexpired: number, expired: number, expiring: number } }) => {
     const options: ApexOptions = {
         colors: ["#3C50E0", "#ff9f0f", '#b30000'],
         chart: {
@@ -55,7 +55,7 @@ const DonutChart = () => {
     };
 
     const [state, setState] = useState<ChartTwoState>({
-        series: [145, 300, 200]
+        series: [expiry.unexpired, expiry.expiring, expiry.expired]
     });
 
     const handleReset = () => {
