@@ -8,7 +8,7 @@ export async function GET(req: Request) {
   try {
     await dbConnect();
 
-    const request = await Maintenance.find();
+    const request = await Maintenance.find({ status: "pending" });
     const maintenances = [];
     for (let i = 0; i < request.length; i++) {
       const maintenance = request[i];
