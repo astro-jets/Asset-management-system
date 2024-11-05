@@ -150,24 +150,6 @@ const NewAsset = () => {
                                             value={formData.cost}
                                         />
                                     </div>
-
-                                    <div className="mb-4.5">
-                                        <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                                            Depreciation %
-                                        </label>
-                                        <input
-                                            type="number"
-                                            placeholder="Depreciation percentage per month"
-                                            className="w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                                            onChange={(e) => {
-                                                setFormData({
-                                                    ...formData,
-                                                    depreciation: e.target.value
-                                                })
-                                            }}
-                                            value={formData.depreciation}
-                                        />
-                                    </div>
                                 </div>
 
                                 <div className="flex flex-col  w-[30%]">

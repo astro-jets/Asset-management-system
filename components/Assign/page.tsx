@@ -79,7 +79,7 @@ const AssetAssignment = ({ asset }: { asset: string }) => {
                 loading && <Loader />
             }
             <SucessModal
-                message="Succefully sent a maintenance request."
+                message="Succefully assigned the asset."
                 title="Message sent"
                 isOpen={showModal}
                 onClose={() => {
@@ -91,7 +91,7 @@ const AssetAssignment = ({ asset }: { asset: string }) => {
             />
             <ErrorModal
                 message={errMsg}
-                title="Failed to send the request."
+                title="Failed to assign the asset."
                 isOpen={showErrModal}
                 onClose={() => {
                     setShowErrModal(false);
