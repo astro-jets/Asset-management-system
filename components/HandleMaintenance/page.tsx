@@ -6,9 +6,19 @@ import SucessModal from "@/app/components/SuccessModal";
 import { useRouter } from "next/navigation";
 import ErrorModal from "@/app/components/ErrorModal";
 import { useSession } from "next-auth/react";
+import { MaintenaceProps } from "@/types/maintenace";
+import { userProps } from "@/types/user";
+import { AssetProps } from "@/types/asset";
+
+type maintenaceProp = {
+    maintenance: MaintenaceProps;
+    user: { _id: string };
+    asset: AssetProps;
+}
 
 
-const HandleMaintenance = ({ maintenance }: { maintenance: string }) => {
+const HandleMaintenance = ({ maintenance }: { maintenance: maintenaceProp }) => {
+    console.log("Handle => ", maintenance)
     const { data: session, status } = useSession();
     const user = session?.user;
     if (!user) { return; }
@@ -24,8 +34,10 @@ const HandleMaintenance = ({ maintenance }: { maintenance: string }) => {
 
     const handleSubmit = async (status: string) => {
         const data = new FormData();
-        data.append('id', maintenance);
+        data.append('id', maintenance.maintenance._id!);
         data.append('status', status);
+        data.append('user', maintenance.user._id);
+        data.append('asset', maintenance.asset._id!);
 
         setStatus(status)
 

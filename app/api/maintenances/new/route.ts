@@ -27,7 +27,7 @@ export async function POST(req: Request) {
         asset: asset,
         message: message,
       });
-      notification.save();
+      await notification.save();
       return NextResponse.json(
         {
           status: true,

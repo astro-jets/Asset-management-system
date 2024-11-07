@@ -18,7 +18,7 @@ type paramProps = {
 
 type maintenaceProp = {
     maintenance: MaintenaceProps;
-    user: userProps;
+    user: { _id: string, name: string };
     asset: AssetProps;
 }
 
@@ -53,7 +53,7 @@ const SingleMaintenace = async ({ params }: paramProps) => {
                                         {maintenance.maintenance.message}
                                     </p>
 
-                                    <HandleMaintenance maintenance={maintenance.maintenance._id!} />
+                                    <HandleMaintenance maintenance={maintenance} />
                                 </div>
                             </div>
                         </div>

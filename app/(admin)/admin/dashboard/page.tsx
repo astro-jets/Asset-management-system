@@ -1,6 +1,6 @@
 import ECommerce from "@/components/Dashboard/customersPage";
 import { Metadata } from "next";
-import { getAdminStats, getCustomerStats, getNotifications, getReports } from "@/app/actions/action";
+import { generateNotifications, getAdminNotifications, getAdminStats, getCustomerStats, getNotifications, getReports } from "@/app/actions/action";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { getServerSession } from "next-auth";
 import { options } from "@/app/api/auth/[...nextauth]/options";
@@ -17,7 +17,8 @@ export default async function Home() {
     if (!session?.user) { return }
     // Get users
     const res = await getAdminStats();
-    const notification = await getNotifications("admin");
+    await generateNotifications();
+    const notification = await getAdminNotifications();
     const stats: StatsType = res.stats;
 
     const reports = await getReports();
