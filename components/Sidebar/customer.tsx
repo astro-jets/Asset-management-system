@@ -179,36 +179,6 @@ const CustomerSidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li>
 
               <li>
-                <Link
-                  href="/reports"
-                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("reports") &&
-                    "bg-white text-primary dark:bg-meta-4"
-                    }`}
-                >
-                  {
-                    pathname.includes("reports") ?
-                      < BsBarChartLine size={20} color={'orangered'} /> :
-                      < BsBarChartLine size={20} color={'#fff'} />
-                  }
-                  Reports
-                </Link>
-              </li>
-
-
-              <li>
-                <Link
-                  href="/settings"
-                  className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("settings") &&
-                    "bg-graydark dark:bg-meta-4"
-                    }`}
-                >
-                  <BsGear size={20} color={'#fff'} />
-                  Settings
-                </Link>
-              </li>
-
-
-              <li>
                 <button
                   onClick={() => signOut({ callbackUrl: "/signin" })}
                   className={`group relative flex items-center gap-2.5  px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out rounded-2xl hover:bg-graydark dark:hover:bg-meta-4 ${pathname.includes("signout") &&
