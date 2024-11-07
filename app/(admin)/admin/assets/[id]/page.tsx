@@ -27,22 +27,29 @@ const SingleAsset = async ({ params }: paramProps) => {
             {asset ? <>
                 <Breadcrumb pageName={`Assets | ${asset.name}`} />
                 <div className="w-full flex justify-center">
-                    <div className="w-4/5 flex justify-between bg-white p-2 rounded-2xl shadow-3 shadow-boxdark">
+                    <div className="w-11/12 flex justify-between bg-white p-2 rounded-2xl shadow-3 shadow-boxdark">
                         <img src={`/uploads/${asset.path}`} className="object-cover rounded-2xl w-[400px] h-[400px]" alt="" />
                         <div className="flex items-center text-boxdark-2 space-y-2 flex-col text-2xl">
                             <img src="/images/logo.png" className="w-full h-20 object-contain overflow-hidden" alt="" />
-                            <div className="flex flex-col w-3/4 space-y-2">
+                            <div className="flex flex-col w-11/12 space-y-4">
                                 <h1>Asset Name: {asset.name}</h1>
                                 <p>Asset Cost: {asset.cost}</p>
                                 {user &&
                                     <>
+
                                         <p>Assigned To:
-                                            <span className="font-bold text-primary cursor-pointer">{user.name}</span>
+                                            <span className="px-2 font-bold text-primary cursor-pointer">{user.name}</span>
                                         </p>
-                                        <p>Assigned On: {asset.assigned_on}</p>
+
+                                        <div className="flex flex-col">
+                                            <p>Assigned On:</p>
+                                            <p> {asset.assigned_on}</p>
+                                        </div>
                                     </>
                                 }
-                                <p>Registered On: {moment(date).calendar()}</p>
+                                <div className="flex flex-col">
+                                    <p>Registered On:</p><p> {moment(date).calendar()}</p>
+                                </div>
                                 <AssetExpiry expiryDate={asset.createdAt} />
                                 <img src={asset.qrCode} className="object-cover rounded-2xl w-30 h-30" alt="" />
                                 {!user && <AssetAssignment asset={asset._id!} />}
