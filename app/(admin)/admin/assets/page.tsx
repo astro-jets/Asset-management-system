@@ -7,6 +7,8 @@ import { getAssets } from "@/app/actions/assets";
 import Link from "next/link";
 import { getNotifications } from "@/app/actions/action";
 import { notificationProps } from "@/types/notification";
+import TablesPage from "../tables/page";
+import TableTwo from "@/components/Tables/TableTwo";
 
 export const metadata: Metadata = {
     title: "Assets",
@@ -26,7 +28,7 @@ const CoursesPage = async () => {
                 <NewAsset />
             </div>
 
-            <div className=" flex-wrap gap-10 grid grid-cols-3">
+            {/* <div className=" flex-wrap gap-10 grid grid-cols-3">
                 {
                     assets.map(asset => (
                         <div className="w-full">
@@ -47,7 +49,8 @@ const CoursesPage = async () => {
                         </div>
                     ))
                 }
-            </div>
+            </div> */}
+            <TableTwo assets={assets} />
         </DefaultLayout>
     );
 };
