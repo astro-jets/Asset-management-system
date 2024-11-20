@@ -40,18 +40,11 @@ const SingleMaintenace = async ({ params }: paramProps) => {
                             <div className="flex items-center text-boxdark-2 space-y-2 flex-col text-2xl">
                                 <img src="/images/logo.png" className="w-full h-20 object-contain overflow-hidden" alt="" />
                                 <div className="flex flex-col w-11/12 space-y-2">
-                                    {user &&
-                                        <p>Requested By:
-                                            <span className="font-bold text-primary cursor-pointer">{user.name}</span>
-                                        </p>
-                                    }
                                     <p>Requested On: {moment(maintenance.maintenance.createdAt).calendar()}</p>
                                     <p className="text-3xl font-bold">Message</p>
                                     <p className="mt-8 text-md">
                                         {maintenance.maintenance.message}
                                     </p>
-
-                                    <HandleMaintenance maintenance={maintenance} />
                                 </div>
                             </div>
                         </div>

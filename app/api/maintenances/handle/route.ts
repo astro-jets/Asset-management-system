@@ -12,15 +12,11 @@ export async function PATCH(req: Request) {
     const user = data.get("user") as unknown as string;
     const asset = data.get("asset") as unknown as string;
     const id = data.get("id") as unknown as string;
-
     const updatedData = { $set: { status: status } };
-
     const maintenances = await Maintenance.findOneAndUpdate(
       { _id: id },
       updatedData
     );
-
-    console.log("Update => ", maintenances.modifiedCount);
 
     if (!maintenances) {
       return NextResponse.json(

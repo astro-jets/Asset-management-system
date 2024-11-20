@@ -46,7 +46,7 @@ const MaintenancesPage = async () => {
                                     <div className="flex-col flex p-3">
                                         <h3 className="text-lg font-bold text-gray-800">{maintenance.asset?.name!}</h3>
                                         <p className="text-graydark dark:text-gray">{maintenance.message}</p>
-                                        <Link href={`/claims/`} className="border-primary border-[1px] rounded-lg mt-5 p-2 w-1/4 flex items-center space-x-2">
+                                        <Link href={`/maintenances/${maintenance._id}`} className="border-primary border-[1px] rounded-lg mt-5 p-2 w-1/4 flex items-center space-x-2">
                                             view
                                         </Link>
                                     </div>

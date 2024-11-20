@@ -2,7 +2,11 @@
 
 export const getAssets = async (): Promise<any> => {
   try {
-    const response = await fetch(`${process.env.ROOT_LINK}/api/assets/all/`);
+    const response = await fetch(`${process.env.ROOT_LINK}/api/assets/all/`, {
+      next: {
+        revalidate: 0,
+      },
+    });
     const res = await response.json();
     return res;
   } catch (e) {

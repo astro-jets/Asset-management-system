@@ -6,11 +6,12 @@ import jsPDF from 'jspdf';
 import autoTable, { RowInput } from 'jspdf-autotable';
 import { FaFilePdf } from "react-icons/fa";
 import moment from "moment";
-import AssetExpiry from "@/app/(dashboard)/assets/[id]/expiry";
 import { calculateAssetExpiry } from "../clculateExpiry";
+import { userProps } from "@/types/user";
 
 
 const TableTwo = ({ assets }: { assets: AssetProps[] }) => {
+  if (!assets) { return }
 
   const downloadPDF = (data: AssetProps[]) => {
     alert("Saving Report")
@@ -28,7 +29,7 @@ const TableTwo = ({ assets }: { assets: AssetProps[] }) => {
           moment(asset.createdAt).calendar(),
           expiry,
           asset.cost,
-          "Mphatso Mtogolo"
+          asset.user ? asset.user.name : "Unassigned"
         ]);
     };
 

@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     description: "This is the assets page",
 };
 
-const CoursesPage = async () => {
+const AssetsPage = async () => {
     const res = await getAssets();
-    console.log(res)
-    const assets: AssetProps[] = res.Assets;
+    console.log("RES => ", res)
+    const assets: AssetProps[] = res.assets;
     const notification = await getNotifications("admin");
     const notifications: notificationProps = notification.notifications;
     return (
@@ -55,4 +55,4 @@ const CoursesPage = async () => {
     );
 };
 
-export default CoursesPage;
+export default AssetsPage;
