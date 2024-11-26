@@ -8,7 +8,7 @@ export async function POST(req: Request) {
   try {
     await dbConnect();
     const data = await req.formData();
-    const user = data.get("user") as unknown as File;
+    const user = data.get("user") as unknown as string;
     const asset = data.get("asset") as unknown as string;
     const message = data.get("message") as unknown as string;
 
