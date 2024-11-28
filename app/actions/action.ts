@@ -123,7 +123,8 @@ export const getAdminNotifications = async (): Promise<any> => {
 export const generateNotifications = async (): Promise<any> => {
   try {
     const response = await fetch(
-      `${process.env.ROOT_LINK}/api/actions/admin/notifications/`
+      `${process.env.ROOT_LINK}/api/actions/admin/notifications/`,
+      { next: { revalidate: 0 } }
     );
     if (!response) {
       return "Couldnt find notifications";

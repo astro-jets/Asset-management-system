@@ -20,7 +20,8 @@ export async function GET(req: Request) {
       status: "unread",
     });
 
-    assets.map((asset) => {
+    for (let i = 0; i < assets.length; i++) {
+      const asset = assets[i];
       const creationDate = asset.createdAt;
       const fiveYearsLater = new Date(creationDate);
       fiveYearsLater.setFullYear(creationDate.getFullYear() + 5);
@@ -32,7 +33,7 @@ export async function GET(req: Request) {
           isExpired,
         });
       }
-    });
+    }
 
     // Generate Notifications
     if (expired.length) {
@@ -45,53 +46,52 @@ export async function GET(req: Request) {
             for (let i = 0; i < notifications.length; i++) {
               const notification = notifications[i];
               if (notification.asset == asset._id) {
-                return NextResponse.json(
-                  { expired: "already made" },
-                  { status: 201 }
-                );
+                console.log("aleady made");
+              } else {
+                // Notify the user that their asset has expired
+                const userNotification = new Notification({
+                  user: user._id,
+                  title: "Asset has expired",
+                  asset: asset._id,
+                  for: user._id,
+                  by: "system",
+                  message: `Your ${asset.name} has expired. Please contact the maintenance team to a look if it needs replacing or fixing.`,
+                });
+                // Notify the admin that an asset has expired
+                const adminNotification = new Notification({
+                  user: user._id,
+                  title: "Asset has expired",
+                  asset: asset._id,
+                  for: "admin",
+                  by: "system",
+                  message: `The ${asset.name} assigned to ${user.name} has expired. Please take a look if it needs replacing or fixing.`,
+                });
+                await userNotification.save();
+                await adminNotification.save();
               }
-              // Notify the user that their asset has expired
-              const userNotification = new Notification({
-                user: user._id,
-                title: "Asset has expired",
-                asset: asset._id,
-                for: user._id,
-                by: "system",
-                message: `Your ${asset.name} has expired. Please contact the maintenance team to a look if it needs replacing or fixing.`,
-              });
-              // Notify the admin that an asset has expired
-              const adminNotification = new Notification({
-                user: user._id,
-                title: "Asset has expired",
-                asset: asset._id,
-                for: "admin",
-                by: "system",
-                message: `The ${asset.name} assigned to ${user.name} has expired. Please take a look if it needs replacing or fixing.`,
-              });
-              await userNotification.save();
-              await adminNotification.save();
             }
+          } else {
+            // Notify the user that their asset has expired
+            const userNotification = new Notification({
+              user: user._id,
+              title: "Asset has expired",
+              asset: asset._id,
+              for: user._id,
+              by: "system",
+              message: `Your ${asset.name} has expired. Please contact the maintenance team to a look if it needs replacing or fixing.`,
+            });
+            // Notify the admin that an asset has expired
+            const adminNotification = new Notification({
+              user: user._id,
+              title: "Asset has expired",
+              asset: asset._id,
+              for: "admin",
+              by: "system",
+              message: `The ${asset.name} assigned to ${user.name} has expired. Please take a look if it needs replacing or fixing.`,
+            });
+            await userNotification.save();
+            await adminNotification.save();
           }
-          // Notify the user that their asset has expired
-          const userNotification = new Notification({
-            user: user._id,
-            title: "Asset has expired",
-            asset: asset._id,
-            for: user._id,
-            by: "system",
-            message: `Your ${asset.name} has expired. Please contact the maintenance team to a look if it needs replacing or fixing.`,
-          });
-          // Notify the admin that an asset has expired
-          const adminNotification = new Notification({
-            user: user._id,
-            title: "Asset has expired",
-            asset: asset._id,
-            for: "admin",
-            by: "system",
-            message: `The ${asset.name} assigned to ${user.name} has expired. Please take a look if it needs replacing or fixing.`,
-          });
-          await userNotification.save();
-          await adminNotification.save();
         }
       }
     }

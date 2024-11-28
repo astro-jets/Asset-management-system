@@ -15,9 +15,10 @@ export const metadata: Metadata = {
 export default async function Home() {
     const session = await getServerSession(options);
     if (!session?.user) { return }
+    const n = await generateNotifications();
+    console.log("N => ", n)
     // Get users
     const res = await getAdminStats();
-    await generateNotifications();
     const notification = await getAdminNotifications();
     const stats: StatsType = res.stats;
 

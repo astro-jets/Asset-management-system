@@ -6,6 +6,7 @@ import "@/css/style.css";
 import React, { useEffect, useState } from "react";
 import Loader from "@/components/common/Loader";
 import AuthProvider from "@/app/context/AuthProvider";
+import { generateNotifications } from "@/app/actions/action";
 
 export default function RootLayout({
   children,
@@ -15,7 +16,6 @@ export default function RootLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [loading, setLoading] = useState<boolean>(true);
 
-  // const pathname = usePathname();
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 100);
