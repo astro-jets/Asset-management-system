@@ -42,7 +42,7 @@ export async function GET(req: Request) {
         const assignment = await Assignment.findOne({ asset: asset._id });
         if (assignment) {
           const user = await User.findById(assignment.user);
-          if (notifications.length) {
+          if (notifications.length > 0) {
             for (let i = 0; i < notifications.length; i++) {
               const notification = notifications[i];
               if (notification.asset == asset._id) {

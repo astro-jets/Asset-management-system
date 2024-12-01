@@ -28,6 +28,7 @@ const DropdownNotification = ({ notifications }: { notifications: notificationPr
         return;
       setDropdownOpen(false);
     };
+    notifications.length ? setNotifying(true) : setNotifying(false);
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
   });
