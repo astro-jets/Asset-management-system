@@ -1,6 +1,6 @@
 import { getAsset } from "@/app/actions/assets";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
+import CustomerDashboard from "@/components/Layouts/CustomerDashboard";
 import { AssetProps } from "@/types/asset";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import moment from "moment";
@@ -30,7 +30,7 @@ const SingleMaintenace = async ({ params }: paramProps) => {
     const user = maintenance.user;
 
     return (
-        <DefaultLayout notifications={[]}>
+        <CustomerDashboard notifications={[]}>
             {maintenance ?
                 <>
                     <Breadcrumb pageName={`Maintenace Request | ${asset.name}`} />
@@ -66,7 +66,7 @@ const SingleMaintenace = async ({ params }: paramProps) => {
                     </div>
                 </div>
             }
-        </DefaultLayout>
+        </CustomerDashboard>
     );
 }
 
