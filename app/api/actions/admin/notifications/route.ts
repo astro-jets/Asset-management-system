@@ -1,4 +1,3 @@
-// pages/api/ClientStats.ts//
 import dbConnect from "@/lib/db";
 import Assets from "@/models/Asset";
 import Assignment from "@/models/Assignment";
@@ -14,14 +13,16 @@ export async function GET(req: Request) {
     const assets = await Assets.find();
 
     const expired: AssetProps[] = [];
-
-    const notifications = await Notification.find({
+    const currentNotifications = await Notification.find({
       by: "system",
       status: "unread",
     });
 
-    for (let i = 0; i < assets.length; i++) {
-      const asset = assets[i];
+    const existingNotificationAssets = new Set(
+      currentNotifications.map((notification) => notification.asset.toString())
+    );
+
+    for (const asset of assets) {
       const creationDate = asset.createdAt;
       const fiveYearsLater = new Date(creationDate);
       fiveYearsLater.setFullYear(creationDate.getFullYear() + 5);
@@ -29,48 +30,20 @@ export async function GET(req: Request) {
       const isExpired = new Date() >= fiveYearsLater;
       if (isExpired) {
         expired.push({
-          ...asset.toObject(), // Convert Mongoose document to plain object
+          ...asset.toObject(),
           isExpired,
         });
       }
     }
 
     // Generate Notifications
-    if (expired.length) {
-      for (let i = 0; i < expired.length; i++) {
-        const asset = expired[i];
+    for (const asset of expired) {
+      if (asset._id && !existingNotificationAssets.has(asset._id.toString())) {
         const assignment = await Assignment.findOne({ asset: asset._id });
         if (assignment) {
           const user = await User.findById(assignment.user);
-          if (notifications.length > 0) {
-            for (let i = 0; i < notifications.length; i++) {
-              const notification = notifications[i];
-              if (notification.asset == asset._id) {
-                return;
-              } else {
-                // Notify the user that their asset has expired
-                const userNotification = new Notification({
-                  user: user._id,
-                  title: "Asset has expired",
-                  asset: asset._id,
-                  for: user._id,
-                  by: "system",
-                  message: `Your ${asset.name} has expired. Please contact the maintenance team to a look if it needs replacing or fixing.`,
-                });
-                // Notify the admin that an asset has expired
-                const adminNotification = new Notification({
-                  user: user._id,
-                  title: "Asset has expired",
-                  asset: asset._id,
-                  for: "admin",
-                  by: "system",
-                  message: `The ${asset.name} assigned to ${user.name} has expired. Please take a look if it needs replacing or fixing.`,
-                });
-                await userNotification.save();
-                await adminNotification.save();
-              }
-            }
-          } else {
+
+          if (user) {
             // Notify the user that their asset has expired
             const userNotification = new Notification({
               user: user._id,
@@ -78,8 +51,9 @@ export async function GET(req: Request) {
               asset: asset._id,
               for: user._id,
               by: "system",
-              message: `Your ${asset.name} has expired. Please contact the maintenance team to a look if it needs replacing or fixing.`,
+              message: `Your ${asset.name} has expired. Please contact the maintenance team to see if it needs replacing or fixing.`,
             });
+
             // Notify the admin that an asset has expired
             const adminNotification = new Notification({
               user: user._id,
@@ -89,6 +63,7 @@ export async function GET(req: Request) {
               by: "system",
               message: `The ${asset.name} assigned to ${user.name} has expired. Please take a look if it needs replacing or fixing.`,
             });
+
             await userNotification.save();
             await adminNotification.save();
           }
@@ -98,7 +73,7 @@ export async function GET(req: Request) {
 
     return NextResponse.json({ expired }, { status: 201 });
   } catch (error) {
-    console.log("Zakanika no expiry => ", error);
+    console.error("Error in expiration logic:", error);
     return NextResponse.json({
       status: false,
       message: `Error fetching User ${error}`,
