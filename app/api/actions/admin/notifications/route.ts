@@ -46,8 +46,10 @@ export async function GET(req: Request) {
             for (let i = 0; i < notifications.length; i++) {
               const notification = notifications[i];
               if (notification.asset == asset._id) {
-                console.log("already made");
-                continue;
+                return NextResponse.json(
+                  { message: "already made" },
+                  { status: 201 }
+                );
               } else {
                 // Notify the user that their asset has expired
                 const userNotification = new Notification({
