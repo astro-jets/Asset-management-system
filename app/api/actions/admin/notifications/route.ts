@@ -46,10 +46,7 @@ export async function GET(req: Request) {
             for (let i = 0; i < notifications.length; i++) {
               const notification = notifications[i];
               if (notification.asset == asset._id) {
-                return NextResponse.json(
-                  { message: "already made" },
-                  { status: 201 }
-                );
+                return;
               } else {
                 // Notify the user that their asset has expired
                 const userNotification = new Notification({
@@ -71,10 +68,6 @@ export async function GET(req: Request) {
                 });
                 await userNotification.save();
                 await adminNotification.save();
-                return NextResponse.json(
-                  { message: "notification made" },
-                  { status: 201 }
-                );
               }
             }
           } else {
@@ -98,10 +91,6 @@ export async function GET(req: Request) {
             });
             await userNotification.save();
             await adminNotification.save();
-            return NextResponse.json(
-              { message: "notification made" },
-              { status: 201 }
-            );
           }
         }
       }
