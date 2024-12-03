@@ -71,6 +71,10 @@ export async function GET(req: Request) {
                 });
                 await userNotification.save();
                 await adminNotification.save();
+                return NextResponse.json(
+                  { message: "notification made" },
+                  { status: 201 }
+                );
               }
             }
           } else {
@@ -94,6 +98,10 @@ export async function GET(req: Request) {
             });
             await userNotification.save();
             await adminNotification.save();
+            return NextResponse.json(
+              { message: "notification made" },
+              { status: 201 }
+            );
           }
         }
       }
